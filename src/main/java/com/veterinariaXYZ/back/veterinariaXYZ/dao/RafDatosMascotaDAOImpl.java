@@ -1,6 +1,6 @@
 package com.veterinariaXYZ.back.veterinariaXYZ.dao;
 
-import com.veterinariaXYZ.back.veterinariaXYZ.dto.RafDatosMascota;
+import com.veterinariaXYZ.back.veterinariaXYZ.entities.Mascota;
 import com.veterinariaXYZ.back.veterinariaXYZ.mapper.RafDatosMascotaMapper;
 import com.veterinariaXYZ.back.veterinariaXYZ.util.DaoUtil;
 import org.springframework.cache.CacheManager;
@@ -16,11 +16,11 @@ import java.util.List;
 
 public class RafDatosMascotaDAOImpl implements RafDatosMascotaDAO {
 
-    private static final String INSERT ="INSERT INTO raf_datosmascota(dsnom_mascota, dsespecie, dsraza, dtf_nacimiento, dsT_identificacion, nmidentificacion, dsnom_dueno, dsciudad, dsdireccion, nmtelefono, dtf_registro) VALUES (?,?,?,NOW(),?,?,?,?,?,?,NOW())";
+    private static final String INSERT ="INSERT INTO mascota(dsnom_mascota, dsespecie, dsraza, dtf_nacimiento, dsT_identificacion, nmidentificacion, dsnom_dueno, dsciudad, dsdireccion, nmtelefono, dtf_registro) VALUES (?,?,?,NOW(),?,?,?,?,?,?,NOW())";
 
-    private static final String UPDATE = "UPDATE raf_datosmascota set dsnom_mascota = ?, dsespecie = ?, dsraza = ?, dtf_nacimiento = ?, dsT_identificacion = ?, nmidentificacion = ?, dsnom_dueno = ?, dsciudad = ?, dsdireccion = ?, nmtelefono = ?, dtf_registro = ?  WHERE nmid = ?";
+    private static final String UPDATE = "UPDATE mascota set dsnom_mascota = ?, dsespecie = ?, dsraza = ?, dtf_nacimiento = ?, dsT_identificacion = ?, nmidentificacion = ?, dsnom_dueno = ?, dsciudad = ?, dsdireccion = ?, nmtelefono = ?, dtf_registro = ?  WHERE nmid = ?";
 
-    private static final String SELECT = "SELECT * FROM raf_datosmascota";
+    private static final String SELECT = "SELECT * FROM mascota";
 
     private static final String SELECTBYID = SELECT + " WHERE nmid = ?";
 
@@ -31,11 +31,11 @@ public class RafDatosMascotaDAOImpl implements RafDatosMascotaDAO {
 
     @Override
 
-    public List<RafDatosMascota> getAll() { return jdbcTemplate.query(SELECT, new RafDatosMascotaMapper());}
+    public List<Mascota> getAll() { return jdbcTemplate.query(SELECT, new RafDatosMascotaMapper());}
 
     @Override
 
-    public RafDatosMascota getById(int nmid){
+    public Mascota getById(int nmid){
         try{
             return jdbcTemplate.queryForObject(SELECTBYID, new RafDatosMascotaMapper(),nmid);
         }
@@ -46,7 +46,7 @@ public class RafDatosMascotaDAOImpl implements RafDatosMascotaDAO {
 
     @Override
 
-    public RafDatosMascota insert(RafDatosMascota entity){
+    public Mascota insert(Mascota entity){
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(INSERT, new String[]{ "nmdato" });
@@ -59,7 +59,7 @@ public class RafDatosMascotaDAOImpl implements RafDatosMascotaDAO {
 
     @Override
 
-    public RafDatosMascota update(RafDatosMascota entity){
+    public Mascota update(Mascota entity){
         jdbcTemplate.update(UPDATE, entity.getDsnom_mascota(), entity.getDsespecie(), entity.getDsraza(), entity.getDtf_nacimiento(), entity.getDsT_identificacion(), entity.getNmidentificacion(), entity.getDsnom_dueno(), entity.getDsciudad(), entity.getDsdireccion(), entity.getNmtelefono(), entity.getDtf_registro());
         return entity;
     }

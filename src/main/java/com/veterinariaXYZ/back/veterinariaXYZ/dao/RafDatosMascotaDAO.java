@@ -1,17 +1,18 @@
 package com.veterinariaXYZ.back.veterinariaXYZ.dao;
 
-import com.veterinariaXYZ.back.veterinariaXYZ.dto.RafDatosMascota;
+
+import com.veterinariaXYZ.back.veterinariaXYZ.entities.Mascota;
+
 import java.util.List;
 
 public interface RafDatosMascotaDAO {
 
-    List<RafDatosMascota> getAll();
+    List<Mascota> getAll();
 
-    RafDatosMascota getById(int nmid);
+    Mascota getById(int nmid);
 
-    RafDatosMascota insert(RafDatosMascota entity);
+    Mascota insert(Mascota entity);
 
-    RafDatosMascota update(RafDatosMascota entity);
-
+    Mascota update(Mascota entity);
 
 }
