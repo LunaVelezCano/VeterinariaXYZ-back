@@ -1,6 +1,5 @@
 package com.veterinariaXYZ.back.veterinariaXYZ.dao;
 
-
 import com.veterinariaXYZ.back.veterinariaXYZ.entities.Mascota;
 
 import java.util.List;

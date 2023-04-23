@@ -20,7 +20,7 @@ public class Mascota {
     private String dsespecie;
     private String dsraza;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtf_nacimiento;
     private String dsT_identificacion;
     private int nmidentificacion;
@@ -28,7 +28,7 @@ public class Mascota {
     private String dsciudad;
     private String dsdireccion;
     private int nmtelefono;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtf_registro;
 
     public Mascota() {
@@ -187,7 +187,7 @@ public class Mascota {
         dsnom_mascota = rs.getString("dsnom_mascota");
         dsespecie = rs.getString("dsespecie");
         dsraza = rs.getString("dsraza");
-        dtf_nacimiento= UtilDate.getLocalDate(rs.getDate("dtf_nacimiento"));
+        dtf_nacimiento = UtilDate.getLocalDate(rs.getDate("dtf_nacimiento"));
         dsT_identificacion = rs.getString("dsT_identificacion");
         nmidentificacion = rs.getInt("nmidentificacion");
         dsnom_dueno = rs.getString("dsnom_dueno");

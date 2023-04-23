@@ -30,7 +30,9 @@ public class RafDatosMascotaController
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+
     @PostMapping("/DatosMascota")
+
     public ResponseEntity<ResponseMessage<Mascota>> createRafDatosMascota(@Valid @RequestBody Mascota mascota) throws ApplicationCustomException {
         log.debug("REST request to save raf_datosmascota : {}", mascota);
         Mascota mascotaFind = rafDatosMascotaService.findOne(mascota.getNmid());
@@ -43,7 +45,9 @@ public class RafDatosMascotaController
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+
     @PutMapping("/DatosMascota")
+
     public ResponseEntity<ResponseMessage<Mascota>> updateRafDatosMascota(@Valid @RequestBody Mascota mascota) throws ApplicationCustomException {
         log.debug("REST request to update raf_datosmascota : {} ", mascota);
         if(mascota.getNmid() == 0){
@@ -54,7 +58,10 @@ public class RafDatosMascotaController
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping("/DatosMascota")
+
+
     public ResponseEntity<ResponseMessage<List<Mascota>>> getAllRafDatosMascota(){
         log.debug("REST request to get all raf_datosmascota");
 
@@ -62,7 +69,9 @@ public class RafDatosMascotaController
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping("/DatosMascota/{nmid}")
+
     public ResponseEntity<ResponseMessage<Mascota>> getRafDatosMascota(@PathVariable int nmid) throws ApplicationCustomException {
         log.debug("REST request to get mascota : {}", nmid);
         Mascota mascota = rafDatosMascotaService.findOne(nmid);
