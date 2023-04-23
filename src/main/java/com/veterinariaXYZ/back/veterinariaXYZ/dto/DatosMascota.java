@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode()
 
 
-public class RafDatosMascota implements  Serializable {
+public class DatosMascota implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

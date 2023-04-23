@@ -1,15 +1,16 @@
 package com.veterinariaXYZ.back.veterinariaXYZ.service;
 
-import com.veterinariaXYZ.back.veterinariaXYZ.dto.RafDatosMascota;
+import com.veterinariaXYZ.back.veterinariaXYZ.entities.Mascota;
+
 import java.util.List;
 
 public interface RafDatosMascotaService {
 
-    RafDatosMascota save(RafDatosMascota application);
+    Mascota save(Mascota application);
 
-    RafDatosMascota update(RafDatosMascota application);
+    Mascota update(Mascota application);
 
-    List<RafDatosMascota> findAll();
+    List<Mascota> findAll();
 
-    RafDatosMascota findOne(int nmid);
+    Mascota findOne(int nmid);
 }
