@@ -1,17 +1,6 @@
-CREATE TABLE IF NOT EXISTS 'raf_DatosMascota'(
-
-     'nmid' int NOT NULL AUTOINCREMENT,
-     'dsnom_mascota' varchar (200),
-     'dsespecie' varchar (200),
-     'dsraza' varchar (200),
-     'dtf_nacimiento' DATE,
-     'dsT_identificacion' varchar (200),
-     'nmidentificacion' int,
-     'dsnom_dueno' varchar (200),
-     'dsciudad'  varchar (200),
-     'dsdireccion' varchar (200),
-     'nmtelefono' int,
-     'dtf_registro' DATE,
-     PRIMARY KEY ('nmid')
-
-);
+INSERT INTO `Veterinario` (`nmidenti_vet`,`dsnom_vet`,`nmtelefono`)
+ VALUES (43454252, 'Cielo', 3016237389),
+(98661354, 'Eduard', 3508295856),
+(21407307, 'Luz Mariela', 3104891448),
+(1017126560, 'Deisy', 3005468821),
+(92746700, 'Beatriz', 3003524966)

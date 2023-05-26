@@ -16,13 +16,23 @@ import java.util.List;
 
 public class RafDatosMascotaDAOImpl implements RafDatosMascotaDAO {
 
-    private static final String INSERT ="INSERT INTO mascota(dsnom_mascota, dsespecie, dsraza, dtf_nacimiento, dsT_identificacion, nmidentificacion, dsnom_dueno, dsciudad, dsdireccion, nmtelefono, dtf_registro) VALUES (?,?,?,NOW(),?,?,?,?,?,?,NOW())";
+    private static final String INSERT ="INSERT " +
+            "INTO mascota(" +
+            "dsnom_mascota, " +
+            "dsespecie, " +
+            "dsraza, " +
+            "dtf_nacimiento, " +
+            "nmidentificacion_dueno, " +
+            "dtf_registro) " +
+            "VALUES (?,?,?,?,?,?)";
 
-    private static final String UPDATE = "UPDATE mascota set dsnom_mascota = ?, dsespecie = ?, dsraza = ?, dtf_nacimiento = ?, dsT_identificacion = ?, nmidentificacion = ?, dsnom_dueno = ?, dsciudad = ?, dsdireccion = ?, nmtelefono = ?, dtf_registro = ?  WHERE nmid = ?";
+    private static final String UPDATE = "UPDATE mascota set dsnom_mascota = ?, dsespecie = ?, dsraza = ?, nmidentificacion_dueno = ?, dtf_registro = ?  WHERE nmid = ?";
 
     private static final String SELECT = "SELECT * FROM mascota";
 
     private static final String SELECTBYID = SELECT + " WHERE nmid = ?";
+
+    private static final String SELECTBYIDENTIFICACIONDUENO = SELECT + " WHERE nmidentificacion_dueno = ?";
 
     JdbcTemplate jdbcTemplate;
     private CacheManager cacheManager;
@@ -46,11 +56,22 @@ public class RafDatosMascotaDAOImpl implements RafDatosMascotaDAO {
 
     @Override
 
+    public List<Mascota> getByidentificacionDueno(long nmidentificacion_dueno){
+        try{
+            return jdbcTemplate.query(SELECTBYIDENTIFICACIONDUENO, new RafDatosMascotaMapper(),nmidentificacion_dueno);
+        }
+        catch(EmptyResultDataAccessException ex){
+            return null;
+        }
+    }
+
+
+    @Override
     public Mascota insert(Mascota entity){
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(INSERT, new String[]{ "nmdato" });
-            DaoUtil.setPrepareStatement(ps, new Object[]{entity.getDsnom_mascota(), entity.getDsespecie(), entity.getDsraza(), entity.getDtf_nacimiento(), entity.getDsT_identificacion(), entity.getNmidentificacion(), entity.getDsnom_dueno(), entity.getDsciudad(), entity.getDsdireccion(), entity.getNmtelefono(), entity.getDtf_registro()});
+            DaoUtil.setPrepareStatement(ps, new Object[]{entity.getDsnom_mascota(), entity.getDsespecie(), entity.getDsraza(), entity.getDtf_nacimiento(),  entity.getNmidentificacion_dueno(), entity.getDtf_registro() });
             return ps;
         }, keyHolder);
         entity.setNmid(keyHolder.getKey().intValue());
@@ -60,7 +81,7 @@ public class RafDatosMascotaDAOImpl implements RafDatosMascotaDAO {
     @Override
 
     public Mascota update(Mascota entity){
-        jdbcTemplate.update(UPDATE, entity.getDsnom_mascota(), entity.getDsespecie(), entity.getDsraza(), entity.getDtf_nacimiento(), entity.getDsT_identificacion(), entity.getNmidentificacion(), entity.getDsnom_dueno(), entity.getDsciudad(), entity.getDsdireccion(), entity.getNmtelefono(), entity.getDtf_registro());
+        jdbcTemplate.update(UPDATE, entity.getDsnom_mascota(), entity.getDsespecie(), entity.getDsraza(), entity.getDtf_nacimiento(),entity.getNmidentificacion_dueno(), entity.getDtf_registro());
         return entity;
     }
 

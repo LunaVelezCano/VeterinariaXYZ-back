@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Data
 @EqualsAndHashCode()
 
-
 public class DatosMascota implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,17 +21,11 @@ public class DatosMascota implements Serializable {
     private String dsnom_mascota;
     private String dsespecie;
     private String dsraza;
-
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dtf_nacimiento;
-    private String dsT_identificacion;
-    private int nmidentificacion;
-    private String dsnom_dueno;
-    private String dsciudad;
-    private String dsdireccion;
-    private int nmtelefono;
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dtf_registro;
+    private  long nmidentificacion_dueno;
 
     @JsonIgnore
     public void setDatosMascotaFromRs(ResultSet rs) throws SQLException {
@@ -41,13 +34,8 @@ public class DatosMascota implements Serializable {
         dsespecie = rs.getString("dsespecie");
         dsraza = rs.getString("dsraza");
         dtf_nacimiento= UtilDate.getLocalDate(rs.getDate("dtf_nacimiento"));
-        dsT_identificacion = rs.getString("dsT_identificacion");
-        nmidentificacion = rs.getInt("nmidentificacion");
-        dsnom_dueno = rs.getString("dsnom_dueno");
-        dsciudad = rs.getString("dsciudad");
-        dsdireccion = rs.getString("dsdireccion");
-        nmtelefono = rs.getInt("nmtelefono");
         dtf_registro = UtilDate.getLocalDate(rs.getDate("dtf_registro"));
+        nmidentificacion_dueno = rs.getLong("nmidentificacion_dueno");
     }
 }
 

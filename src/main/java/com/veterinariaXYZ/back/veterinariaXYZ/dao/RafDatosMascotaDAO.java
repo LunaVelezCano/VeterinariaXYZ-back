@@ -14,4 +14,6 @@ public interface RafDatosMascotaDAO {
 
     Mascota update(Mascota entity);
 
+    List<Mascota> getByidentificacionDueno(long nmidentificacion_dueno);
+
 }

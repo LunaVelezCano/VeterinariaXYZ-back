@@ -1,11 +1,9 @@
 package com.veterinariaXYZ.back.veterinariaXYZ.entities;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.veterinariaXYZ.back.veterinariaXYZ.util.UtilDate;
 import jakarta.persistence.*;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -19,17 +17,11 @@ public class Mascota {
     private String dsnom_mascota;
     private String dsespecie;
     private String dsraza;
-
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtf_nacimiento;
-    private String dsT_identificacion;
-    private int nmidentificacion;
-    private String dsnom_dueno;
-    private String dsciudad;
-    private String dsdireccion;
-    private int nmtelefono;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtf_registro;
+    private long nmidentificacion_dueno;
 
     public Mascota() {
     }
@@ -39,50 +31,28 @@ public class Mascota {
                    String dsespecie,
                    String dsraza,
                    LocalDate dtf_nacimiento,
-                   String dsT_identificacion,
-                   int nmidentificacion,
-                   String dsnom_dueno,
-                   String dsciudad,
-                   String dsdireccion,
-                   int nmtelefono,
-                   LocalDate dtf_registro) {
+                   LocalDate dtf_registro,
+                    long nmidentificacion_dueno) {
         this.nmid = nmid;
         this.dsnom_mascota = dsnom_mascota;
         this.dsespecie = dsespecie;
         this.dsraza = dsraza;
         this.dtf_nacimiento = dtf_nacimiento;
-        this.dsT_identificacion = dsT_identificacion;
-        this.nmidentificacion = nmidentificacion;
-        this.dsnom_dueno = dsnom_dueno;
-        this.dsciudad = dsciudad;
-        this.dsdireccion = dsdireccion;
-        this.nmtelefono = nmtelefono;
         this.dtf_registro = dtf_registro;
+        this.nmidentificacion_dueno = nmidentificacion_dueno;
     }
-
     public Mascota(String dsnom_mascota,
                    String dsespecie,
                    String dsraza,
                    LocalDate dtf_nacimiento,
-                   String dsT_identificacion,
-                   int nmidentificacion,
-                   String dsnom_dueno,
-                   String dsciudad,
-                   String dsdireccion,
-                   int nmtelefono,
-                   LocalDate dtf_registro) {
-        this.nmid = nmid;
+                   LocalDate dtf_registro,
+                   long nmidentificacion_dueno){
         this.dsnom_mascota = dsnom_mascota;
         this.dsespecie = dsespecie;
         this.dsraza = dsraza;
         this.dtf_nacimiento = dtf_nacimiento;
-        this.dsT_identificacion = dsT_identificacion;
-        this.nmidentificacion = nmidentificacion;
-        this.dsnom_dueno = dsnom_dueno;
-        this.dsciudad = dsciudad;
-        this.dsdireccion = dsdireccion;
-        this.nmtelefono = nmtelefono;
         this.dtf_registro = dtf_registro;
+        this.nmidentificacion_dueno = nmidentificacion_dueno;
     }
 
     public int getNmid() {
@@ -125,62 +95,14 @@ public class Mascota {
         this.dtf_nacimiento = dtf_nacimiento;
     }
 
-    public String getDsT_identificacion() {
-        return dsT_identificacion;
+    public LocalDate getDtf_registro() {return dtf_registro;}
+    public void setDtf_registro(LocalDate dtf_registro) {this.dtf_registro = dtf_registro;}
+
+    public long getNmidentificacion_dueno() {
+        return nmidentificacion_dueno;
     }
 
-    public void setDsT_identificacion(String dsT_identificacion) {
-        this.dsT_identificacion = dsT_identificacion;
-    }
-
-    public int getNmidentificacion() {
-        return nmidentificacion;
-    }
-
-    public void setNmidentificacion(int nmidentificacion) {
-        this.nmidentificacion = nmidentificacion;
-    }
-
-    public String getDsnom_dueno() {
-        return dsnom_dueno;
-    }
-
-    public void setDsnom_dueno(String dsnom_dueno) {
-        this.dsnom_dueno = dsnom_dueno;
-    }
-
-    public String getDsciudad() {
-        return dsciudad;
-    }
-
-    public void setDsciudad(String dsciudad) {
-        this.dsciudad = dsciudad;
-    }
-
-    public String getDsdireccion() {
-        return dsdireccion;
-    }
-
-    public void setDsdireccion(String dsdireccion) {
-        this.dsdireccion = dsdireccion;
-    }
-
-    public int getNmtelefono() {
-        return nmtelefono;
-    }
-
-    public void setNmtelefono(int nmtelefono) {
-        this.nmtelefono = nmtelefono;
-    }
-
-    public LocalDate getDtf_registro() {
-        return dtf_registro;
-    }
-
-    public void setDtf_registro(LocalDate dtf_registro) {
-        this.dtf_registro = dtf_registro;
-    }
-
+    public void setNmidentificacion_dueno(long nmidentificacion_dueno) {this.nmidentificacion_dueno = nmidentificacion_dueno;}
     @JsonIgnore
     public void setDatosMascotaFromRs(ResultSet rs) throws SQLException {
         nmid = rs.getInt("nmid");
@@ -188,12 +110,7 @@ public class Mascota {
         dsespecie = rs.getString("dsespecie");
         dsraza = rs.getString("dsraza");
         dtf_nacimiento = UtilDate.getLocalDate(rs.getDate("dtf_nacimiento"));
-        dsT_identificacion = rs.getString("dsT_identificacion");
-        nmidentificacion = rs.getInt("nmidentificacion");
-        dsnom_dueno = rs.getString("dsnom_dueno");
-        dsciudad = rs.getString("dsciudad");
-        dsdireccion = rs.getString("dsdireccion");
-        nmtelefono = rs.getInt("nmtelefono");
         dtf_registro = UtilDate.getLocalDate(rs.getDate("dtf_registro"));
+        nmidentificacion_dueno = rs.getLong("nmidentificacion_dueno");
     }
 }

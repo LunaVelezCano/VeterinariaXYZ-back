@@ -45,4 +45,12 @@ public class RafDatosMascotaServiceImpl implements RafDatosMascotaService {
         log.debug("Request to get raf_datosmascota : {}", nmid);
         return raf_datosmascotaDAO.getById(nmid);
     }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Mascota> findByNmidentificacionDueno(long nmidentificacion_dueno) {
+        log.debug("Request to get raf_datosmascota : {}", nmidentificacion_dueno);
+        return raf_datosmascotaDAO.getByidentificacionDueno(nmidentificacion_dueno);
+    }
+
+
 }

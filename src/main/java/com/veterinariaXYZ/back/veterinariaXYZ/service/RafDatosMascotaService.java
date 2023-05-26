@@ -13,4 +13,7 @@ public interface RafDatosMascotaService {
     List<Mascota> findAll();
 
     Mascota findOne(int nmid);
+    List<Mascota> findByNmidentificacionDueno(long nmidentificacion_dueno);
+
+
 }

@@ -4,10 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-
 public class UtilDate {
     private UtilDate(){}
-
     public static LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant()
                 .atZone(ZoneId.systemDefault())
@@ -20,4 +18,3 @@ public class UtilDate {
         return tmp.toLocalDate();
     }
 }
-
