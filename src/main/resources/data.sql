@@ -1,6 +1,22 @@
-INSERT INTO `Veterinario` (`nmidenti_vet`,`dsnom_vet`,`nmtelefono`)
- VALUES (43454252, 'Cielo', 3016237389),
-(98661354, 'Eduard', 3508295856),
-(21407307, 'Luz Mariela', 3104891448),
-(1017126560, 'Deisy', 3005468821),
-(92746700, 'Beatriz', 3003524966)
+CREATE TABLE IF NOT EXISTS 'Dueno'(
+    'nmidentificacion' BIGINT NOT NULL,
+    'dsT_identificacion' varchar (200),
+    'dsnom_dueno' varchar (200),
+    'dsciudad'  varchar (200),
+    'dsdireccion' varchar (200),
+    'nmtelefono' bigint,
+    PRIMARY KEY ('nmidentificacion')
+);
+CREATE TABLE IF NOT EXISTS 'Mascota'(
+     'nmid' int NOT NULL AUTOINCREMENT,
+     'dsnom_mascota' varchar (200),
+     'dsespecie' varchar (200),
+     'dsraza' varchar (200),
+     'dtf_nacimiento' DATE,
+     'nmidentificacion_dueno' bigint,
+     'dtf_registro' DATE,
+     PRIMARY KEY ('nmid'),
+     FOREIGN KEY (nmidentificacion_dueno) REFERENCES Dueno(nmidentificacion)
+);
+
+

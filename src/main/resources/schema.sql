@@ -19,22 +19,4 @@ CREATE TABLE IF NOT EXISTS 'Mascota'(
      FOREIGN KEY (nmidentificacion_dueno) REFERENCES Dueno(nmidentificacion)
 );
 
-CREATE TABLE IF NOT EXISTS 'Veterinario'(
-     'nmidenti_vet' BIGINT NOT NULL,
-     'dsnom_vet' varchar (200),
-     'nmtelefono' bigint,
-     PRIMARY KEY ('nmidenti_vet')
-);
 
-CREATE TABLE IF NOT EXISTS 'Cita'(
-      'nmid' int NOT NULL AUTOINCREMENT,
-      'dsnom_mascota' varchar (200),
-      'dtf_cita' DATE,
-      'hr_cita' varchar (200),
-      'nmid_vet' BIGINT NOT NULL,
-      'nmidentificacion_dueno' bigint NOT NULL,
-     PRIMARY KEY ('nmid'),
-     FOREIGN KEY (nmidentificacion_dueno) REFERENCES Dueno(nmidentificacion),
-     FOREIGN KEY (nmid_vet) REFERENCES Veterinario(nmidenti_vet),
-
-);
